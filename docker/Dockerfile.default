@@ -1,0 +1,16 @@
+FROM golang:1.10.4
+MAINTAINER wubm<bingmao.wu@thundertoken.tw>
+
+ENV GODIR=/go
+WORKDIR $GODIR
+
+RUN groupadd -g <GID> gouser \
+    && useradd -m -r -u <UID> -g gouser gouser
+
+ADD ./docker/docker-entrypoint.sh /entrypoint.sh
+RUN chown gouser:gouser /entrypoint.sh
+
+USER gouser
+
+ENTRYPOINT [ "/entrypoint.sh" ]
+

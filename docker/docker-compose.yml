@@ -1,0 +1,14 @@
+version: '3'
+services:
+  go-dev:
+    container_name: go-dev
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    hostname: go-dev
+    ports:
+      - "18545:8545"
+    volumes:
+      - ../:/go
+    restart: always
+
